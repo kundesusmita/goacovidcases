@@ -1,0 +1,80 @@
+<html>
+<head>
+<title> Goa Covid Cases </title>
+</head>
+
+<body align="center">
+{% load to_hyphen %}
+<h1>Goa Covid Cases</h1>
+<div class="container">
+<h2>Dashboard</h2>
+<h2>Date wise covid cases in all the districts</h2>
+<table class="content" border="2px" align="center">
+  <thead bgcolor='grey'>
+  <tr>
+    <th>Date</th>
+    <th>Total</th>
+    <th>North Goa</th>
+    <th>South Goa</th>
+    <th>Unknown</th>
+  </tr></thead>
+  <tbody>
+    {% for d in CASEDATA %}
+  <tr align="center">    
+    <td>{{ d.Date|date:"Y-m-d" }}</td>
+    <td>{{ d.Total }}</td>
+    <td>{{ d.NorthGoa }}</td>
+	<td>{{ d.SouthGoa }}</td>
+	<td>{{ d.Unknown }}</td>
+  </tr>
+  {% endfor %}
+</tbody> 
+</table>
+</br>
+</br>
+<table class="content" border="2px" align="center">
+  <thead bgcolor='grey'>
+  <tr>
+  {% for h in HDate %}
+  <th colspan="2">Date: {{ h.Date|date:"Y-m-d" }}</th>
+  {% endfor %}
+  </tr>
+  <tr>
+    <th>Locations</th>
+    <th>Cases</th>
+  </tr></thead>
+    <tbody>
+    {% for dt in DATEDATA %}
+  <tr align="center">    
+    <td>{{ dt.Locations|to_hyphen }}</td>
+    <td>{{ dt.Cases }}</td>
+  </tr>
+  {% endfor %}
+</tbody> 
+</table>
+</br>
+</br>
+<div class='container'>
+<h2>District wise total covid cases</h2>
+	<table class="content" border="2px" align="center">
+	<thead bgcolor='grey'>
+	<tr>
+		<th>North Goa</th>
+		<th>South Goa</th>
+		<th>Unknown</th>
+	</tr>
+	</thead>
+	<tbody>
+	{% for t in Total %}
+	<tr align="center">    
+    <td>{{ t.NorthGoa }}</td>
+    <td>{{ t.SouthGoa }}</td>
+	<td>{{ t.Unknown }}</td>
+	</tr>
+	{% endfor %}
+	</tbody>
+	</table>
+</div>
+</div>
+</body>
+</html>
